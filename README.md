@@ -1,7 +1,8 @@
 project-source
 ==============
 
-A text-adventure game. Project source is my first Javascript project built from the ground up. 
+A text-adventure game. Project source is my first Javascript project built from the ground up.
+Please do email me if you want to contribute to source.
 
 How-to run Project Source
 ========================
