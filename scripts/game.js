@@ -1,25 +1,95 @@
 // JavaScript Document
-//SETS ALL VARIABLES FOR THE GAME
-test = ['this','is','a','array','test'];
+searchdesk = false;
+/*************************************************************
+Set up, user starts by leaving the starting point then is faced with a choice of either going west or north.
+*******************
+Going east
+*******************
+If the user goes east then they will be faced with a choice of going east or west to go either:
+Go east and your faced with going into the kitchen and finding idems there 
+*******************************
+Going West in Going West choice
+*******************************
+If the user goes west then goes west again then:
+the user will go outside and can search the bushes outside.
+********************
+Going North
+********************
+Then they have a choice of going upstairs or going into the office
+If the user goes into the office they will search the room
+--------------------------------------------------------------
+if the user goes upstairs then they will be faced with either going west to the guestroom or east to go to the master bedroom, if they discover the attic then collectables will be in there.
+*************************************************************/
+//How-to win the game. || This Idem.
+frontdoorKey = false;
 //current room
-currentroom = 'main frame';
+currentroom = 'closet';
 //rooms
+/****************
+	Hallway 1
+****************/
+beentoOutside = false;
+beentoKitchen = false;
+/**********************
+Go back to hallway var(s)
+**********************/
+beentoWesthall = false;
+beentoEasthall = false;
+/*******************
+hallway 2 to Office or Upstairs
+*******************/
+beentoOffice = false;
+beentoUpstairs = false;
+/*******************
+	Upstairs
+*******************/
+beentoGuestroom = false;
+beentoMasterbedroom = false;
+beentoAttic = false;
+//other
 debugUser = 'Nicky';
 errorSet = false;
-//Idems
-pistol = false;
-shank = false;
+/*******************
+		idems
+*******************/
+//Start of the game, the idems you find.
 phone = false;
-Sniper = false;
-Machinegun =false;
-c4 = false;
+note = false;
+//Kitchen idems you find
+cookiepan = false;
+knife = false;
+note_two = false;
+//Outside Idem
+
+//office idems you find
 bullets = false;
+outdoor_key = false;
+note_three = false;
+skill_one = false;
+/******************
+Upstairs idems
+******************/
+//Guestroom 
+masterbedroom_key = false;
+skill_two = false;
+//master bedroom
+gun = false;
+skill_three = false;
+cash = false;
+//attic
+skill_four = false;
+/******************
+Who has been killed
+*******************/
+haskilledHobo = false;
+haskilledWolf = false;
+//End
 $(document).ready(function() {
 	$("#compass").fadeIn(2000);
 	$("#message_begin").fadeIn(3000);
 	$("#area_main").fadeIn(3000);
 	$("#command_line").fadeIn(2000);
-	$("alpha").fadeIn(2000);
+	//$("alpha").fadeIn(2000);
 	$("form").submit(function() {
 		var input = $("#command_line").val();
 		//Dev what?
@@ -28,37 +98,15 @@ $(document).ready(function() {
 			$("<p>Dev what? Be specific.</p>").insertBefore("#placeholder").fadeIn(1000);
 		}
 			}
-	else if(input =="Hack James account" || input=="hack james account" || input=="hack james bank account"||input =="hack Sandra\'s bank account"||input =="hack kile\'s bank account"||input =="hack Robert\'s bank account"){			
-			$( input + '<p>has:<br>10,000 dollars in their bank account.</p>').insertBefore("#placeholder").fadeIn(1000);		
-		}
-		else if(input == "Credits" || input =="credits"){
-				$('<p><center>Mod editor:Nicky Laczko<br>Creative designer:Some Random Dude<br>Original creator: I forget his name.</center></p>').insertBefore("#placeholder").fadeIn(1000);
-			console.log('credits have been requested.');
-			}
 		else if(input =="where am I?"||input=='Where am i?'|| input=='where am i?'||input=='where am i'){
 			$('<p>' + currentroom + '</p>').insertBefore("#placeholder").fadeIn(1000);
 		
 			}
-		else if(input == 'My username is JS dev'||input == 'js dev'|| input == 'my username is js dev'){
-			$('<p>You are logged in as JavaScript dev.</p>').insertBefore("#placeholder").fadeIn(1000);
-			console.log('dev has checked in. Please allow him to use the git code.');
-			}
-		else if(input =='git gud'){
-			console.log('git gud has been requested. github.com/rivalnick/make repo for this code');
-			$('<p>Please check inspect the element and check the console</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-		else if(input == 'joke'|| input =='Joke'){
-			$('<p>2 hippos walk into a bar and one says JOKE, THIS ISNT A JOKE GAME...</p>').insertBefore("#placeholder").fadeIn(1000);
-			console.log('Joke has been requested. What were you excepting a joke? rood.');
-			}
-		else if(input == 'description' || input == 'desc'){
-			$('<p>A text adventure game based around nothing at the moment.</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
 		/*
 		else(input == ''){
-			$('<p>I do\'nt understand' + input + '.</p>').insertBefore("#placeholder").fadeIn(1000);
+			$('<p>I don\'t understand' + input + '.</p>').insertBefore("#placeholder").fadeIn(1000);
 		}
-		*/
+	*/
 		//help
 		//
 		
@@ -79,17 +127,7 @@ $(document).ready(function() {
 			}
 			
 		}
-			/*
-			//unloaded gun
-			else if (input == "take gun") {
-				if (currentroom == "closet" && gun == false) {
-					gun = true;
-					$('<p>You picked up a gun, but it has no ammo.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-			//
-			
+			//closet Idems			
 			//Phone
 			else if (input == "take phone" || input == "take cell phone") {
 				if (currentroom == "closet" && phone == false) {
@@ -100,44 +138,46 @@ $(document).ready(function() {
 			}
 			//
 			
-			//shank
-			else if (input == "take shank") {
-				if (currentroom == "office" && shank == false) {
-					shank = true;
-					$('<p>You picked up a shank.Looks old and rusted.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-			//
-			
-			//doorKey
-			else if (input == "take doorkey" || input == "take Master bedroom key") {
-				if (currentroom == "guestroom" && doorKey == false) {
-					doorKey = true;
-					$('<p>You picked up a key. Now you can enter the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-			//
-			
 			//note
-			else if (input == "take note" || input == "read note") {
+			else if (input == "take note") {
 				if (currentroom == "closet" && note == false) {
 					note = true;
-					$('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems you have emerged from the slumber. Don\'t worry. Things will get more interesting as you go along, watch out, this house has been abanded for years.Who knows who lives here now. Good luck getting out.<br /><br />Sincerely,<br/>~ Anonymous<br /><br />P.S.Watch your back, or you\'ll loose your head.</p>').insertBefore("#placeholder").fadeIn(1000);
+$('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems you have emerged from the slumber. Don\'t worry. Things will get more interesting as you go along, watch out, this house has been abanded for years.Who knows who lives here now. Good luck getting out.<br /><br />Sincerely,<br/>~ Anonymous<br /><br />P.S.Watch your back, or you\'ll loose your head.</p>').insertBefore("#placeholder").fadeIn(1000);				
+			}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			//
+			//end of closet Idems
+			/****************************************************************************/
+			//Kitchen Idems
+			else if (input == "take cookiepan" || input == "take cookie pan") {
+				if (currentroom == "kitchen" && cookiepan == false) {
+					//forgot to set these currenroom vars
+					currentroom = 'kitchen';
+					cookiepan = true;
+					$('<p>You picked up a cookie pan, maybe bake some cupcakes?</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//
 			
-			//atticKey
-			else if (input == "take attic key"|| input == "attickey") {
-				if (currentroom == "upstairs" && atticKey == false) {
-					atticKey = true;
-					$('<p>You picked up the key to the attic.Maybe try upstairs.</p>').insertBefore("#placeholder").fadeIn(1000);
-					if (currentroom == "upstairs" && atticKey == true) {
-						$('<p>Look up there might be a door there.</p>').insertBefore("#placeholder").fadeIn(1000);
+			//knife
+			else if (input == "take knife") {
+				if (currentroom == "kitchen" && knife == false) {
+					currentroom = 'kitchen';
+					knife = true;
+					$('<p>You have picked up a knife, it seems used and has some stains on it.</p>').insertBefore("#placeholder").fadeIn(1000);
 					}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			//
+			
+			//note 2
+			else if (input == "take note two"|| input == "take note_two"|| input == "take note 2") {
+				if (currentroom == "kitchen" && note_two == false) {
+				currentroom = 'kitchen';
+					note_two = true;
+					$('<p>You picked up another note it reads:Well, you have found yet another note I have left around the house, well I\'ll keep this one short and sweet. I would watch your back, I think there is a man living up in the attic, but that\'s all the info I have at the moment.<br />From,<br /> Anon</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
@@ -146,12 +186,17 @@ $(document).ready(function() {
 			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 		
 		}
-		//outdoorKey
-		else if(input =="take out door key"|| input =="take outdoor key") {
-			if(currentroom == "westhallway" && outdoorKey == false){
-				outdoorKey = true;
-				$('<p>You picked up the key to outside. Something is engraved on it... But its too hard to read.</p>').insertBefore("#placeholder").fadeIn(1000);
-				
+		/*********************************************************************/
+									//Outside Idems
+		
+		/*********************************************************************/
+							//Office Idems
+		//outdoor_key
+		else if(input =='take outdoor_key' || input =='take outdoor key' || input == 'take out door key' || input == 'take Outdoor key' || input == 'take outdoor Key' || input == 'take outDoor key'){
+			if(currentroom == 'office' && outdoor_key == false){
+			currentroom = 'office';
+			outdoor_key = true;
+				$('<p>You have picked up an outdoor key. Maybe it leads to I don\'t know outside?</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
@@ -160,50 +205,120 @@ $(document).ready(function() {
 			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 		
 		}
-		
-		//cookiepan
-		/*
-		else if(input == "take cookie pan"|| input == "take cookie sheet") {
-			if(currentroom == 'kitchen' && cookiepan == false){
-				cookiepan= true;
-				$('<p>You picked up a cookie pan, looked indented with a head print, and looks stained with blood. But do\'nt worry, keep it with you.</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
+		//note 3
+		else if(input == 'take note 3' || input == 'take note three' || input == 'take note_three' || input == 'take note3'){
+			if(currentroom == 'office' && note_three == false){
+				currentroom = 'office';
+					note_three = true;
+				$('<p>You have picked up another note,this time its 1 line.<br /> Lets keep this short and simple, you won\'t survive. Plain and simple. There,bye <br />From,Anon</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
 			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 		
 		}
-		*
-		//knife
-		else if(input =="take knife"){
-			if(currentroom =="kitchen" && knife == false){
-				knife = true;
-			$('<p>You picked up a knife, it\'s rusty but still workable.</p>').insertBefore("#placeholder").fadeIn(1000);
+		//skill one
+		else if(input == 'take skill 1' || input == 'take skill one' || input == 'take skill_one' || input == 'take skill1'){
+				if(currentroom == 'office' && skill_one == false){
+					currentroom = 'office';
+					skill_one = true;
+				$('<p>You have picked up skill one or formally known as hacking skill. This allows you to hack certain things in-game.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-			else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
 			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 		
 		}
-		*
-		//money 
-		else if(input =="take money"||input =="grab money"){
-			if(currentroom =="attic" && money == false){
-			money = true;
-				$('<p>you picked up some cash, going through it you looted 2,000 dollars.</p>').insertBefore("#placeholder").fadeIn(1000);
+		/**************************************************************
+									//Guestroom 
+						masterbedroom_key = false;
+								skill_two = false;
+		***************************************************************/
+		//masterbedroom_key
+		else if(input == 'take masterbedroom key'|| input == 'take master bedroom key' || input == 'take masterbed room key' || input == 'take master bed room key'){
+			if(currentroom == 'guestroom' && masterbedroom_key == false){
+					currentroom = 'guestroom';
+					masterbedroom_key = true;
+				$('<p>You picked up a masterbed room key, seems to lead to some room on the upstairs.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-			else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
 			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 		
 		}
-		//
+		
+		//skill 2
+		else if(input == 'take skill_two' || input == 'take skill2' || input == 'take skill 2' || input == 'take skill two'){
+			if(currentroom == 'guestroom' && skill_two == false){
+				skill_two = true;
+				currentroom = 'guestroom';
+					$('<p>You picked up a door hack, at the moment nothing is working for hacks.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
+		
+		}
+		
+		/****************************************************************
+								//master bedroom
+								gun = false;
+							skill_three = false;
+								cash = false;
+		*****************************************************************/
+		//gun 
+		else if(input =='take gun'){
+			if(currentroom == 'masterbedroom' && gun == false){
+			currentroom = 'masterbedroom';
+			gun = true;
+				$('<p>You picked up a gun, the markings are smeared, but faint smell of death reminses.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
+		
+		}
+		//skill 3
+		else if(input == 'take skill3' || input == 'take skill three' || input == 'take skill 3' || input == 'take skillthree'){
+			if(currentroom == 'masterbedroom' && skill_three == false){
+				skill_three = true;
+				currentroom = 'masterbedroom';
+					$('<p>You picked up another skill, called skill 3 or formally known as a flashlight. But no skills are working at the moment.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
+		
+		}
+		
+		//cash
+		else if(input == 'take cash' ||input == 'take money' || input == 'take dough' || input == 'take cash money' || input == 'take bank' || input == 'take dat cash'){
+			if(currentroom == 'masterbedroom' && cash == false){
+				cash = true;
+				currentroom = 'masterbedroom';
+				$('<p>Ypu picked up some cash, lets count it later.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
+		
+		}
+		
+			/********************************************************
+				//attic
+				skill_four = false;
+			*********************************************************/
+			else if(input == 'take skill_four' || input == 'take skill 4' || input == 'take skill four' || input == 'take skill4' || input == 'take skillfour'){
+				if(currentroom == 'attic' && skill_four == false){
+					skill_four = true;
+					currentroom = 'attic';
+				$('<p>You picked up another skill, but those are\'nt working at the moment.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
+		
+		}
 		//end take
 		//
 		
@@ -213,42 +328,57 @@ $(document).ready(function() {
 		
 		//
 		//search
-		/*/
+		
 		else if (input.indexOf("search") > -1) {
 			
 			if (input == "search") {
 				$('<p>Search what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
+		}	//closet the beginning of the game.
+			else if(input == 'search closet' || input == 'search Closet'|| input == 'Search closet' || input == 'Search Closet'){
+				if(currentroom == 'closet' && phone == false && note == false){
+					phone = true;
+					note = true;
+				$('<p>You found a old phone, looks bulky. A note lays on the ground also.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			//kitchen
+			else if(input =="search kitchen" ||input == 'search Kitchen' || input == 'Search kitchen'|| input == 'Search Kitchen'){
+				if(currentroom == "kitchen" && cookiepan == false && knife == false && note_two == false ) {
+					currentroom = 'kitchen';
+					cookiepan = true;
+					knife = true;
+					note_two = true;
+			$('<p>You found a cookiepan, looks old and rusty. Also you found a bloody knife and another note, note 2.</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+				
+				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+			//
+
+			else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
+		
 		}
-			/*
 			//office
-			else if (input == "search office desk") {
-				if (currentroom == "office" && bullets == false && shank == false) {
+			else if (input == "search office desk" || input == 'search officedesk' || input == 'Search office'|| input == 'search Office' || input == 'Search Office') {
+				if (currentroom == "office" && bullets == false && note_three == false && skill_one == false && outdoor_key == false) {
 					bullets = true;
-					shank = true;
-					searchdesk = true;
-					$('<p>You found some bullets in the desk and a bloody shank, looks used.</p>').insertBefore("#placeholder").fadeIn(1000);
+					currentroom = 'office';
+					note_three = true;
+					skill_one = true;
+					outdoor_key = true;
+					$('<p>You found some bullets in the desk and a key leading outside. Another note falls out onto the floor.Note 3 it\'s labeled.Also a skill is found.(skill 1)</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//
-			
-			//Masterbedroom
-			else if (input == "search Masterbedroom"|| input="search master bedroom") {
-				if (currentroom == "Masterbedroom") {
-					doorKey = true;
-					$('<p>You found a old wooden key in one of the shelves.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-			//
-			
 			//guestroom
-			else if (input == "search guest room"|| input =="search guestroom") {
-				if (currentroom == "guestroom") {
-				doorKey = true;
-				atmhack= true;
-					$('<p>you found a skill that might connect to the phone and the master bedroom key.</p>').insertBefore("#placeholder").fadeIn(1000);
+			else if (input == "search guest room"|| input =="search guestroom" || input =='Search guestroom' || input =='search Guestroom' || input == 'Search guest room' || input == 'search Guest room') {
+				if (currentroom == "guestroom" && skill_two == false && masterbedroom_key == false) {
+					skill_two = true;
+					masterbedroom_key = true;
+					$('<p>You found a key to the masterbedroom, and you found a skill.but skills don\'t work at the moment.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -258,25 +388,25 @@ $(document).ready(function() {
 			else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 		
 		}
-		//kitchen
-			else if(input =="search kitchen"){
-				if(currentroom == "kitchen") {
-					chocolatechipCookies = true;
-			$('<p>you found some chocolate chip cookies, yum!</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-				
+			//Masterbedroom
+			else if (input == "search Masterbedroom"|| input="search master bedroom" || input == 'Search masterbedroom' || input == 'search Masterbedroom' || input == 'Search Masterbedroom' || input == 'Search Masterbed room') {
+				if (currentroom == "Masterbedroom" && cash == false && gun == false) {
+					currentroom = 'Masterbedroom';
+					cash = true;
+					gun =  true;
+					skill_three = true;
+					$('<p>You found some cash buried in the walls of the room,we can\'t count it now. You also found a gun and another skill, skill 3.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//
-
-			else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		//hobo
 		else if(input =="search hobo"|| input=="search dead hobo"){
-			if(currentroom == "attic"){
-				tvhack = true;
-			$('<p>You found a tv hack, that lets you control the tv\'s in the house.</p>').insertBefore("#placeholder").fadeIn(1000);
+			if(currentroom == "attic" && frontdoorKey == false){
+			frontdoorKey = true;
+			currentroom = 'attic';
+				//going into the attic when you kill the hobo you find the key to the front door and to leave. That makes you win the game.
+			$('<p>You found the front door key! That\'s your way out of this house!Go downstairs and leave.</p>').insertBefore("#placeholder").fadeIn(1000);
 		}
 				
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -369,68 +499,112 @@ $(document).ready(function() {
 		//
 		else if (input.indexOf("inventory") > -1) {
 			if (input == "inventory") {
-				//gun
-				if (pistol == true) {
-					p = "Pistol<br />";
+				//phone
+				if (phone == true) {
+					p = "Phone<br />";
 				}
 				else {
 					p = "";
 				}
 				//
 				
-				//shank
-				if (shank == true) {
-					sh = "Shank<br />";
+				//note
+				if (note == true) {
+					n = "Note<br />";
 				}
 				else {
-					sh = "";
+					n = "";
 				}
 				//
-				//phone
-				if (phone == true) {
-					ph = "Phone<br />";
+				//cookiepan
+				if (cookiepan == true) {
+					cp = "Cookiepan<br />";
 				}
 				else {
-					ph = "";
+					cp = "";
 				}
-				//
-				
-				
-				//Sniper
-				if(Sniper == true){
-					sn ="Sniper Rifle<br />";
+				//knife
+				if(knife == true){
+					kf ="Knife<br />";
 				}
 				else{
-					sn="";
+					kf="";
 				}
-				//Machinegun
-				if(Machinegun == true){
-					mg="Machine Gun<br />";
-				}
-				else{
-					mg="";
-				}
-				//c4
-				if(c4 == true){
-					c ="C4<br />";
+				//note_two
+				if(note_two == true){
+					ntw="Note_two<br />";
 				}
 				else{
-					c ="";
+					ntw="";
 				}
 				//bullets
-				if (bullets == true) {
-					bl = "Bullets<br />";
+				if(bullets == true){
+					b ="bullets<br />";
+				}
+				else{
+					b ="";
+				}
+				//outdoor key
+				if (outdoor_key == true) {
+					ok = "outdoor key<br />";
 				}
 				else {
-					bl = "";
+					ok = "";
+				}
+				if (note_three == true){
+					ntt = "Note 3<br />";
+				}
+				else {
+					ntt ="";
+				}
+				if (skill_one == true){
+					sko = "Hacking Skill<br />";
+				}
+				else {
+					sko = "";
+				}
+				if (masterbedroom_key == true){
+					mbk = "Master bedroom key<br />";
+				}
+				else {
+					mbk ="";
+				}
+				if (skill_two == true){
+					skt = "Door Hack<br />";
+				}
+				else{
+					skt = "";
+				}
+				if (gun == true){
+					g = "Gun<br />";
+				}
+				else{
+					g = "";
+				}
+				if (skill_three == true){
+					sktr = "Flashlight<br />";
+				}
+				else{
+					sktr = "";
+				}
+				if (cash == true){
+					c = "cash<br />";	
+				}
+				else{
+					c = "";
+				}
+				if (skill_four == true){
+					skf = "Attic Key<br />";
+				}
+				else{
+					skf = "";
 				}
 				//
-				console.log("make the inventory bigger.");
-				if (p == "" && sh == "" && ph == ""&& sn == "" && mg == "" && c =="" && bl =="") {	//Add to this inventory and make it bigger.
+				if (p == "" && n == "" && cp == ""&& kf == "" && ntw == "" && b =="" && ok =="" && ntt =="" && sko == "" && mbk == "" && skt == "" && g == "" && sktr == "" && c =="" && skf == "") {	//Add to this inventory and make it bigger.
 					$('<p>Inventory:<br /><i>There is nothing in your inventory</i></p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else {
-					 $('<p>Inventory:<br />'+ p + sh + ph + sn + mg + c + bl +'</p>').insertBefore("#placeholder").fadeIn(1000);
+					 $('<p>Inventory:<br />' + p + n + cp + kf + ntw + b + ok + ntt + sko + mbk + skt + g + sktr + c + skf +'</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
 			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -438,15 +612,6 @@ $(document).ready(function() {
 		//
 		//end inventory
 		//
-		else if(input == 'durp' || input =='durp dino'){
-				$('<p>So now your a durp master, congrats! Now you have the power to:<br>Durp Doctor<br>Durp Dive</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-		else if(input =='durp doctor'|| input == 'Durp Doctor' || input == 'durp Doctor' || input == 'Durp doctor'){
-				$("<p>You have changed clothes and now are wearing a Dino costume with some scrubs on.</p>")
-				}
-		else if(input =='durp hacker'|| input =='Durp hacker'||input =='durp Hacker' || input == 'Durp Hacker'){
-				$('<p>You have transformed into the durp hacker, congrats. User has been given 20 gold for finding bug in system.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
 		//
 		//unlock
 		//
@@ -513,7 +678,7 @@ $(document).ready(function() {
 			else if(currentroom =="upstairs" && atticKey = true){
 				$('<p> You are now in the attic.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-				else $('<p>You do\'nt have a attic key.</p>').insertBefore("#placeholder").fadeIn(1000);
+				else $('<p>You don\'t have a attic key.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
 			
@@ -521,17 +686,16 @@ $(document).ready(function() {
 		//
 		//end unlock
 		//
-		
-		
-		
-		
-		
-		
-		
+
+		*/	
+		else if(input.indexOf("use") >-1){
+			if(input == "use"){
+			$('<p>use what? Be descriptive</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
+		}
 		//
 		//go
 		//
-		*/
 		else if (input.indexOf("hack") > -1) {
 			if (input == "hack") {
 				$('<p>hack what? Be descriptive.</p>').insertBefore("#placeholder").fadeIn(1000);
