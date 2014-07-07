@@ -107,7 +107,7 @@ $(document).ready(function() {
 		
 		else if (input.indexOf("take") > -1) {
 			
-			if (input == "take") {
+			if (input == "take"|| input == 'Take') {
 				$('<p>Take what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			
@@ -412,7 +412,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		//inventory
 		//
 		else if (input.indexOf("inventory") > -1) {
-			if (input == "inventory") {
+			if (input == "inventory"|| input == 'Inventory') {
 				//phone
 				if (phone == true) {
 					p = "Phone<br />";
@@ -628,7 +628,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		//
 		//go
 		else if(input.indexOf("go") >-1){
-			if(input == 'go'){
+			if(input == 'go'|| input == 'Go'){
 				$('<p>Go where? Be descriptive.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		
