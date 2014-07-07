@@ -152,7 +152,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					currentroom = 'kitchen';
 					knife = true;
 					$('<p>You have picked up a knife, it seems used and has some stains on it.</p>').insertBefore("#placeholder").fadeIn(1000);
-					}
+				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//
@@ -177,7 +177,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			currentroom = 'office';
 			outdoor_key = true;
 				$('<p>You have picked up an outdoor key. Maybe it leads to I don\'t know outside?</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
+				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		//note 3
@@ -256,7 +256,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-		
 			/********************************************************
 				//attic
 				skill_four = false;
@@ -271,26 +270,20 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			}
 		//end take
 		//
-		
-		
-		
-		
-		
-		//
 		//search
 		
 		else if (input.indexOf("search") > -1) {
 			
 			if (input == "search") {
 				$('<p>Search what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-		}	//closet the beginning of the game.
+					}
+			}	//closet the beginning of the game.
 			else if(input == 'search closet' || input == 'search Closet'|| input == 'Search closet' || input == 'Search Closet'){
 				if(currentroom == 'closet' && phone == false && note == false){
 					phone = true;
 					note = true;
 				$('<p>You found a old phone, looks bulky. A note lays on the ground also.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
+					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//kitchen
@@ -301,7 +294,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					knife = true;
 					note_two = true;
 			$('<p>You found a cookiepan, looks old and rusty. Also you found a bloody knife and another note, note 2.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}	
+					}	
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//office
@@ -313,7 +306,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					skill_one = true;
 					outdoor_key = true;
 					$('<p>You found some bullets in the desk and a key leading outside. Another note falls out onto the floor.Note 3 it\'s labeled.Also a skill is found.(skill 1)</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
+					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//
@@ -323,8 +316,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					skill_two = true;
 					masterbedroom_key = true;
 					$('<p>You found a key to the masterbedroom, and you found a skill.but skills don\'t work at the moment.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				
+					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//Masterbedroom
@@ -335,7 +327,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					gun =  true;
 					skill_three = true;
 					$('<p>You found some cash buried in the walls of the room,we can\'t count it now. You also found a gun and another skill, skill 3.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
+					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//
@@ -346,8 +338,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			currentroom = 'attic';
 				//going into the attic when you kill the hobo you find the key to the front door and to leave. That makes you win the game.
 			$('<p>You found the front door key! That\'s your way out of this house!Go downstairs and leave.</p>').insertBefore("#placeholder").fadeIn(1000);
-		}
-				
+					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		//bushes for outside
@@ -355,8 +346,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		if(currentroom == "garden"){
 			crowbar = true;
 		$('<p>You found a crowbar,this can open all the doors in the building.</p>').insertBefore("#placeholder").fadeIn(1000);
-		}
-				
+					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		//
@@ -369,7 +359,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			
 			if (input == "kill") {
 				$('<p>Kill what with what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
+					}
 			//
 			/*
 			//shank self
@@ -451,21 +441,21 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				if(knife == true){
 					kf ="Knife<br />";
 				}
-				else{
+				else {
 					kf="";
 				}
 				//note_two
 				if(note_two == true){
 					ntw="Note_two<br />";
 				}
-				else{
+				else {
 					ntw="";
 				}
 				//bullets
 				if(bullets == true){
 					b ="bullets<br />";
 				}
-				else{
+				else {
 					b ="";
 				}
 				//outdoor key
@@ -496,31 +486,31 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				if (skill_two == true){
 					skt = "Door Hack<br />";
 				}
-				else{
+				else {
 					skt = "";
 				}
 				if (gun == true){
 					g = "Gun<br />";
 				}
-				else{
+				else {
 					g = "";
 				}
 				if (skill_three == true){
 					sktr = "Flashlight<br />";
 				}
-				else{
+				else {
 					sktr = "";
 				}
 				if (cash == true){
 					c = "cash<br />";	
 				}
-				else{
+				else {
 					c = "";
 				}
 				if (skill_four == true){
 					skf = "Attic Key<br />";
 				}
-				else{
+				else {
 					skf = "";
 				}
 				//
@@ -617,6 +607,24 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			$('<p>use what? Be descriptive</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		}
+		/*
+		Use Idems go here!
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		*/
 		//
 		//go
 		else if(input.indexOf("go") >-1){
