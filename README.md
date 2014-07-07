@@ -18,6 +18,9 @@ License
 =======
 Project souce is under a [MIT License](http://opensource.org/licenses/MIT).
 
+contribute
+==========
+If you would like to contribute then do please email me at devchatnick@gmail.com. I check my emails on a weekly basis. If you do contact me then please leave your reason to contribute and your github username. If you don't want to go through all that hassle then just fork this over to yours and send me a pull request!
  
 
 
