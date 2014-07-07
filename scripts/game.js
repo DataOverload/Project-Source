@@ -92,21 +92,6 @@ $(document).ready(function() {
 	//$("alpha").fadeIn(2000);
 	$("form").submit(function() {
 		var input = $("#command_line").val();
-		//Dev what?
-		 if(input.indexOf("dev") >-1){
-			if(input == 'dev'){
-			$("<p>Dev what? Be specific.</p>").insertBefore("#placeholder").fadeIn(1000);
-		}
-			}
-		else if(input =="where am I?"||input=='Where am i?'|| input=='where am i?'||input=='where am i'){
-			$('<p>' + currentroom + '</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-			}
-		/*
-		else(input == ''){
-			$('<p>I don\'t understand' + input + '.</p>').insertBefore("#placeholder").fadeIn(1000);
-		}
-	*/
 		//help
 		//
 		
@@ -181,11 +166,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		/*********************************************************************/
 									//Outside Idems
 		
@@ -200,11 +180,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		//note 3
 		else if(input == 'take note 3' || input == 'take note three' || input == 'take note_three' || input == 'take note3'){
 			if(currentroom == 'office' && note_three == false){
@@ -214,9 +189,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		//skill one
 		else if(input == 'take skill 1' || input == 'take skill one' || input == 'take skill_one' || input == 'take skill1'){
 				if(currentroom == 'office' && skill_one == false){
@@ -226,9 +198,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		/**************************************************************
 									//Guestroom 
 						masterbedroom_key = false;
@@ -243,9 +212,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		
 		//skill 2
 		else if(input == 'take skill_two' || input == 'take skill2' || input == 'take skill 2' || input == 'take skill two'){
@@ -256,10 +222,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
-		
 		/****************************************************************
 								//master bedroom
 								gun = false;
@@ -275,9 +237,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		//skill 3
 		else if(input == 'take skill3' || input == 'take skill three' || input == 'take skill 3' || input == 'take skillthree'){
 			if(currentroom == 'masterbedroom' && skill_three == false){
@@ -287,9 +246,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		
 		//cash
 		else if(input == 'take cash' ||input == 'take money' || input == 'take dough' || input == 'take cash money' || input == 'take bank' || input == 'take dat cash'){
@@ -300,9 +256,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		
 			/********************************************************
 				//attic
@@ -316,9 +269,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		//end take
 		//
 		
@@ -351,15 +301,9 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					knife = true;
 					note_two = true;
 			$('<p>You found a cookiepan, looks old and rusty. Also you found a bloody knife and another note, note 2.</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-				
+				}	
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
-			else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 			//office
 			else if (input == "search office desk" || input == 'search officedesk' || input == 'Search office'|| input == 'search Office' || input == 'Search Office') {
 				if (currentroom == "office" && bullets == false && note_three == false && skill_one == false && outdoor_key == false) {
@@ -383,13 +327,8 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
-			else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 			//Masterbedroom
-			else if (input == "search Masterbedroom"|| input="search master bedroom" || input == 'Search masterbedroom' || input == 'search Masterbedroom' || input == 'Search Masterbedroom' || input == 'Search Masterbed room') {
+			else if (input == "search Masterbedroom"|| input == "search master bedroom" || input == 'Search masterbedroom' || input == 'search Masterbedroom' || input == 'Search Masterbedroom' || input == 'Search Masterbed room') {
 				if (currentroom == "Masterbedroom" && cash == false && gun == false) {
 					currentroom = 'Masterbedroom';
 					cash = true;
@@ -411,11 +350,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
-			else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		//bushes for outside
 		else if(input =="search bushs"||input=="search bushes"){
 		if(currentroom == "garden"){
@@ -425,19 +359,9 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			//
-
-			else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
-		
-		}
 		//
 		//end search
 		//
-		
-		
-		
-		*/
-		
 		//
 		//kill
 		//
@@ -695,12 +619,11 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		}
 		//
 		//go
-		//
-		else if (input.indexOf("hack") > -1) {
-			if (input == "hack") {
-				$('<p>hack what? Be descriptive.</p>').insertBefore("#placeholder").fadeIn(1000);
+		else if(input.indexOf("go") >-1){
+			if(input == 'go'){
+				$('<p>Go where? Be descriptive.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-		}
+		
 			/*
 			//go from closet to east hallway
 			else if (input == "go east" && currentroom == "closet") {
@@ -933,11 +856,12 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			
 			
 			*/
-			//else $('<p>You can\'t go that way.</p>').insertBefore("#placeholder").fadeIn(1000);
+			else $('<p>You can\'t go that way.</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
 		//}
 		//
 		//end go
-				
+			else $('<p> I don\'t understand:' + input + '</p>').insertBefore("#placeholder").fadeIn(1000);
 		$("#console").scrollTop($("#console")[0].scrollHeight);
 		$("#command_line").val("");
 	});
