@@ -14,6 +14,11 @@ Step 2:
 Step-3:
 --------
       Double click on the index.html file and the game will boot right up!
+License
+=======
+Project souce is under a [MIT License](http://opensource.org/licenses/MIT).
+
+ 
 
 
 
