@@ -1,8 +1,11 @@
 /* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+/*
 @font-face {
         font-family: "Console";
         src: url("fonts/CPmono.ttf") format("truetype");
 }
+*/
 /*@font-face {
         font-family: "Con sole";
         src: url("fonts/CPmono.eot") format("opentype");
