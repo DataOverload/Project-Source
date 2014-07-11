@@ -560,7 +560,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			}
 				}
 			
-			//outside
+			//go outside
 			else if (input == "unlock outside with outdoorKey" || input == "unlock outside door with outdoorkey" || input == "unlock outdoor with out door key" || input == "unlock outdoor with outdoor key") {
 				if (currentroom != "westhall") {
 					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -570,7 +570,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else if (currentroom == "westhall" && outdoor_key == true) {
 						currentroom = 'westhall';
-					$('<p>You unlocked the door to the outside successfully. You can now explore the bushes around you.</p>').insertBefore("#placeholder").fadeIn(1000);
+					$('<p>You unlocked the door to the outside successfully. You can now explore the bushes around you. But watch out a tall face-less man might be out in the woods...</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>The door cannot be unlocked.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
@@ -582,9 +582,11 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else if (input == 'leave outside'|| input == 'go back to west hall'|| input == 'go back inside'|| input == 'go back into westhall') {
+				if(currentroom == 'outside'){
 						currentroom = 'westhall';
 					$('<p>You are back in the westhall</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
+			}
 				else if (currentroom == "westhall" && outdoor == false) {
 					currentroom = 'westhall';
 					$('<p>You are in the west hall.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -611,19 +613,20 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		}
 		//unlock attic
 		else if(input =="unlock attic" || input =="open attic" ||input =="open attic door" ||input =="unlock attic door"){
-			if(currentroom !="upstairs"){
-				$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
+			if(currentroom == "upstairs"){
+				currentroom = 'attic';
+				$('<p>You are now in the attic.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-			else if(currentroom =="upstairs"){
-				$('<p> You are now in the attic.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				else $('<p>You don\'t have a attic key.</p>').insertBefore("#placeholder").fadeIn(1000);
+			if	(currentroom != 'upstairs'){
+				$('<p>You can\'t do that!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
 			
 		}
 		//
 		//end unlock
+		//
+		//maybe put in easter eggs here and there.
 		//
 		//go
 		else if(input.indexOf("go") >-1){
