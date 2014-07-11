@@ -268,6 +268,14 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
+		else if(input == 'take front door key'|| input == 'take frontdoor key'|| input == 'Take Frontdoor key'|| input == 'take frontDoor key'|| input == 'take frontdoorkey' || input == 'take FrontDoor Key'|| input == 'take front doorkey'){
+			if(currentroom == 'attic' && frontdoorKey == false){
+				frontdoorKey = true;
+					currentroom = 'attic';
+				$('<p>You picked up the key to the front door! This is the way out of this crazy mansion.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
 		//end take
 		//
 		//search
@@ -330,7 +338,16 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
+			//attic 
+			else if(input == 'search attic'|| input == 'Search attic'|| input == 'search Attic'|| input == 'Search Attic'){
+				if(currentroom == 'attic' && frontdoorKey == false){
+				frontdoorKey = true;
+					$('<p>You found a strange key it emmits a way out of the house. It\'s imprinted with a writing reading: frontdoor key</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
+			}
 			//
+			/*
 		//hobo
 		else if(input =="search hobo"|| input=="search dead hobo"){
 			if(currentroom == "attic" && frontdoorKey == false){
@@ -341,10 +358,12 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
+			*/
 		//bushes for outside
-		else if(input =="search bushs"||input=="search bushes"){
-		if(currentroom == "garden"){
+		else if(input =="search bushs"||input=="search bushes"|| input == 'search bush'){
+		if(currentroom == "outside"){
 			crowbar = true;
+			currentroom = 'outside';
 		$('<p>You found a crowbar,this can open all the doors in the building.</p>').insertBefore("#placeholder").fadeIn(1000);
 					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -361,20 +380,9 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				$('<p>Kill what with what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 					}
 			//
-			/*
-			//shank self
-			else if (input == "kill self with shank") {
-				if (shank == true) {
-					$("#container").fadeOut(3000, function() {
-						$("#killself").fadeIn(3000);
-					});
-				}
-				else {
-					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-			}
 			
-			else if (input == "kill self with knife") {
+			//knife self
+			else if (input == "kill self with knife"|| input == 'kill self with the knife' || input == 'kill me with knife') {
 				if (knife == true) {
 					$("#container").fadeOut(3000, function() {
 						$("#killself").fadeIn(3000);
@@ -384,9 +392,9 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
-			
-			else if (input == "kill self with phone") {
-				if (phone == true) {
+			//gun
+			else if (input == "kill self with gun"|| input == 'shoot self'|| input == 'killself with gun') {
+				if (gun == true) {
 					$("#container").fadeOut(3000, function() {
 						$("#killself").fadeIn(3000);
 					});
@@ -395,8 +403,18 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
+			else if(input =="kill hobo"){
+				if(currentroom == 'attic' && haskilledHobo == false){
+					haskilledHobo = true;
+					$('<p>You killed the hobo!</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+			else { 
+					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+			}
+				
 			//
-			*/
+			
 			else $('<p>You can\'t do that!</p>').insertBefore("#placeholder").fadeIn(1000);
 			
 		
@@ -535,7 +553,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				$('<p>Unlock door with what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 				}
-			/*
+			
 			//outside
 			else if (input == "unlock outside with outdoorKey" || input == "unlock outside door with outdoorkey" || input == "unlock outdoor with out door key" || input == "unlock outdoor with outdoor key") {
 				if (currentroom != "westhall") {
@@ -544,8 +562,8 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				else if (outdoor == true) {
 					$('<p>The door is already unlocked.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-				else if (currentroom == "westhall" && outdoorKey == true) {
-					cellunlocked = true;
+				else if (currentroom == "westhall" && outdoor_key == true) {
+						currentroom = 'westhall';
 					$('<p>You unlocked the door to the outside successfully. You can now explore the bushes around you.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>The door cannot be unlocked.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -553,15 +571,16 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			//
 			
 			//leave outside
-			else if (input == "leave outside"|| input=="go inside"|| input == "go back inside") {
+			else if (input == "leave outside"|| input=="go inside"|| input == "go back inside"|| input == 'go back to westhall') {
 				if (currentroom != "outside") {
 					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-				else if (gobackWestHall == true) {
+				else if (input == 'leave outside'|| input == 'go back to west hall'|| input == 'go back inside'|| input == 'go back into westhall') {
+						currentroom = 'westhall';
 					$('<p>You are back in the westhall</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else if (currentroom == "westhall" && outdoor == false) {
-					//exitunlocked = true;
+					currentroom = 'westhall';
 					$('<p>You are in the west hall.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>You are outside still.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -571,12 +590,12 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
 			
 		}
-		//unlock attic
+		//unlock master bedroom
 		else if(input =="unlock master bedroom" || input == "unlock masterbed room" || input =="unlock masterbed room door")
-			if(currentroom !="upstairs"){
+			if(currentroom != "upstairs"){
 				$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-			else if (currentroom =="upstairs" && doorKey == true){
+			else if (currentroom =="upstairs" && masterbedroom_key == true){
 				$('<p>You are now in the master bed room</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>You do\'nt have a door key.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -589,7 +608,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			if(currentroom !="upstairs"){
 				$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
-			else if(currentroom =="upstairs" && atticKey = true){
+			else if(currentroom =="upstairs"){
 				$('<p> You are now in the attic.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>You don\'t have a attic key.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -599,32 +618,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		}
 		//
 		//end unlock
-		//
-
-		*/	
-		else if(input.indexOf("use") >-1){
-			if(input == "use"){
-			$('<p>use what? Be descriptive</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-		}
-		/*
-		Use Idems go here!
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		*/
 		//
 		//go
 		else if(input.indexOf("go") >-1){
