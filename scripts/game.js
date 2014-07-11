@@ -107,7 +107,7 @@ $(document).ready(function() {
 		
 		else if (input.indexOf("take") > -1) {
 			
-			if (input == "take"|| input == 'Take') {
+			if (input == "take") {
 				$('<p>Take what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			
@@ -430,7 +430,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		//inventory
 		//
 		else if (input.indexOf("inventory") > -1) {
-			if (input == "inventory"|| input == 'Inventory') {
+			if (input == "inventory") {
 				//phone
 				if (phone == true) {
 					p = "Phone<br />";
@@ -531,12 +531,18 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				else {
 					skf = "";
 				}
+				if (frontdoorKey = true){
+					fdk = "Frontdoor key<br />";
+				}
+				else {
+					fdk = "";
+				}
 				//
-				if (p == "" && n == "" && cp == ""&& kf == "" && ntw == "" && b =="" && ok =="" && ntt =="" && sko == "" && mbk == "" && skt == "" && g == "" && sktr == "" && c =="" && skf == "") {	//Add to this inventory and make it bigger.
+				if (p == "" && n == "" && cp == ""&& kf == "" && ntw == "" && b =="" && ok =="" && ntt =="" && sko == "" && mbk == "" && skt == "" && g == "" && sktr == "" && c =="" && skf == ""&& fdk == "") {	//Add to this inventory and make it bigger.
 					$('<p>Inventory:<br /><i>There is nothing in your inventory</i></p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else {
-					 $('<p>Inventory:<br />' + p + n + cp + kf + ntw + b + ok + ntt + sko + mbk + skt + g + sktr + c + skf +'</p>').insertBefore("#placeholder").fadeIn(1000);
+					 $('<p>Inventory:<br />' + p + n + cp + kf + ntw + b + ok + ntt + sko + mbk + skt + g + sktr + c + skf + fdk +'</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
 			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -621,7 +627,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		//
 		//go
 		else if(input.indexOf("go") >-1){
-			if(input == 'go'|| input == 'Go'){
+			if(input == 'go'){
 				$('<p>Go where? Be descriptive.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		
@@ -862,7 +868,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		//}
 		//
 		//end go
-			else $('<p> I don\'t understand:' + input + '</p>').insertBefore("#placeholder").fadeIn(1000);
+			else $('I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
 		$("#console").scrollTop($("#console")[0].scrollHeight);
 		$("#command_line").val("");
 	});
