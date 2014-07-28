@@ -1,5 +1,9 @@
-// JavaScript Document
-searchdesk = false;
+/*
+* game.js made by Rival Nick.
+* this script is the main component of Project Source
+* The script is editable on github. github.com/rivalnick/project-source
+* Please do send me a pull request if you do tend to alter it in any way to make the game better.
+*/
 /*************************************************************
 Set up, user starts by leaving the starting point then is faced with a choice of either going west or north.
 *******************
@@ -46,9 +50,6 @@ beentoUpstairs = false;
 beentoGuestroom = false;
 beentoMasterbedroom = false;
 beentoAttic = false;
-//other
-debugUser = 'Nicky';
-errorSet = false;
 /*******************
 		idems
 *******************/
@@ -60,8 +61,6 @@ cookiepan = false;
 knife = false;
 note_two = false;
 //Outside Idem
-
-//office idems you find
 bullets = false;
 outdoor_key = false;
 note_three = false;
@@ -325,14 +324,14 @@ $(document).ready(function() {
 			}
 			*/
 		//bushes for outside
-		else if(input =="search bushs"||input=="search bushes"|| input == 'search bush'){
+		/*else if(input =="search bushs"||input=="search bushes"|| input == 'search bush'){
 		if(currentroom == "outside"){
 			crowbar = true;
 		$('<p>You found a crowbar,this can open all the doors in the building.</p>').insertBefore("#placeholder").fadeIn(1000);
 					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-		//
+		*/
 		//end search
 		//kill
 		//
@@ -541,9 +540,6 @@ $(document).ready(function() {
 		}
 		//
 		//end unlock
-		//
-		//maybe put in easter eggs here and there.
-		//
 		//go
 		else if(input.indexOf("go") >-1){
 			if(input == 'go'){
@@ -707,9 +703,6 @@ $(document).ready(function() {
 				$("area_upstairs").clone().insertBefore("#placeholder").fadeIn(1000);
 				currentroom = "upstairs";
 				}
-			/*********************************
-			Finally this is the upstairs part.
-			**********************************/
 			//go west to the guestroom
 			else if (input == "go west" && currentroom == "upstairs") {
 			if (beentoOffice == true) {
