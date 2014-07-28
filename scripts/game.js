@@ -34,7 +34,7 @@ beentoKitchen = false;
 Go back to hallway var(s)
 **********************/
 beentoWesthall = false;
-beentoEasthall = false;
+beentoWesthall = false;
 /*******************
 hallway 2 to Office or Upstairs
 *******************/
@@ -108,8 +108,6 @@ $(document).ready(function() {
 			if (input == "take") {
 				$('<p>Take what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			
-		}
 			//closet Idems			
 			//Phone
 			else if (input == "take phone" || input == "take cell phone") {
@@ -125,7 +123,7 @@ $(document).ready(function() {
 			else if (input == "take note") {
 				if (currentroom == "closet" && note == false) {
 					note = true;
-$('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems you have emerged from the slumber. Don\'t worry. Things will get more interesting as you go along, watch out, this house has been abanded for years.Who knows who lives here now. Good luck getting out.<br /><br />Sincerely,<br/>~ Anonymous<br /><br />P.S.Watch your back, or you\'ll loose your head.</p>').insertBefore("#placeholder").fadeIn(1000);				
+			$('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems you have emerged from the slumber. Don\'t worry. Things will get more interesting as you go along, watch out, this house has been abanded for years.Who knows who lives here now. Good luck getting out.<br /><br />Sincerely,<br/>~ Anonymous<br /><br />P.S.Watch your back, or you\'ll loose your head.</p>').insertBefore("#placeholder").fadeIn(1000);				
 			}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
@@ -206,7 +204,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		//gun 
 		else if(input =='take gun'){
 			if(currentroom == 'masterbedroom' && gun == false){
-			currentroom = 'masterbedroom';
 			gun = true;
 				$('<p>You picked up a gun, the markings are smeared, but faint smell of death reminses.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
@@ -215,8 +212,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		//skill 3
 		else if(input == 'take skill3' || input == 'take skill three' || input == 'take skill 3' || input == 'take skillthree'){
 			if(currentroom == 'masterbedroom' && skill_three == false){
-				skill_three = true;
-				currentroom = 'masterbedroom';
+					skill_three = true;
 					$('<p>You picked up another skill, called skill 3 or formally known as a flashlight. But no skills are working at the moment.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -226,27 +222,26 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		else if(input == 'take cash' ||input == 'take money' || input == 'take dough' || input == 'take cash money' || input == 'take bank' || input == 'take dat cash'){
 			if(currentroom == 'masterbedroom' && cash == false){
 				cash = true;
-				currentroom = 'masterbedroom';
 				$('<p>Ypu picked up some cash, lets count it later.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			else if(input == 'take skill_four' || input == 'take skill 4' || input == 'take skill four' || input == 'take skill4' || input == 'take skillfour'){
 				if(currentroom == 'attic' && skill_four == false){
-					skill_four = true;
-					currentroom = 'attic';
+				skill_four = true;
 				$('<p>You picked up another skill, but those are\'nt working at the moment.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		else if(input == 'take front door key'|| input == 'take frontdoor key'|| input == 'Take Frontdoor key'|| input == 'take frontDoor key'|| input == 'take frontdoorkey' || input == 'take FrontDoor Key'|| input == 'take front doorkey'){
 			if(currentroom == 'attic' && frontdoorKey == false){
-				frontdoorKey = true;
-					currentroom = 'attic';
+			frontdoorKey = true;
 				$('<p>You picked up the key to the front door! This is the way out of this crazy mansion.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
+		//else $('<p>That item is not here!</p>').insertBefore("#placeholder").fadeIn(1000);
+		}
 		//end take
 
 		//search
@@ -333,7 +328,6 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 		else if(input =="search bushs"||input=="search bushes"|| input == 'search bush'){
 		if(currentroom == "outside"){
 			crowbar = true;
-			currentroom = 'outside';
 		$('<p>You found a crowbar,this can open all the doors in the building.</p>').insertBefore("#placeholder").fadeIn(1000);
 					}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
@@ -378,12 +372,7 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
-				
-			//
-			
 			else $('<p>You can\'t do that!</p>').insertBefore("#placeholder").fadeIn(1000);
-			
-		
 		}
 		//
 		//end kill
@@ -504,21 +493,15 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					 $('<p>Inventory:<br />' + p + n + cp + kf + ntw + b + ok + ntt + sko + mbk + skt + g + sktr + c + skf + fdk +'</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
-			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
 		}
 		//
 		//end inventory
-		//
-		//
-		//unlock
-		//
 		
+		//unlock
 		else if (input.indexOf("unlock") > -1) {
 			if (input == "unlock" || input == "unlock door" || input == "unlock outside door" || input == "unlock outside") {
 				$('<p>Unlock door with what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-				}
-			
 			//go outside
 			else if (input == "unlock outside with outdoorKey" || input == "unlock outside door with outdoorkey" || input == "unlock outdoor with out door key" || input == "unlock outdoor with outdoor key") {
 				if (currentroom != "westhall") {
@@ -528,37 +511,13 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					$('<p>The door is already unlocked.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else if (currentroom == "westhall" && outdoor_key == true) {
-						currentroom = 'westhall';
 					$('<p>You unlocked the door to the outside successfully. You can now explore the bushes around you. But watch out a tall face-less man might be out in the woods...</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else $('<p>The door cannot be unlocked.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 			//
-			
-			//leave outside
-			else if (input == "leave outside"|| input=="go inside"|| input == "go back inside"|| input == 'go back to westhall') {
-				if (currentroom != "outside") {
-					$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				else if (input == 'leave outside'|| input == 'go back to west hall'|| input == 'go back inside'|| input == 'go back into westhall') {
-				if(currentroom == 'outside'){
-						currentroom = 'westhall';
-					$('<p>You are back in the westhall</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-			}
-				else if (currentroom == "westhall" && outdoor == false) {
-					currentroom = 'westhall';
-					$('<p>You are in the west hall.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-				else $('<p>You are outside still.</p>').insertBefore("#placeholder").fadeIn(1000);
-			}
-			//
-			
-			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
-			
-		}
 		//unlock master bedroom
-		else if(input =="unlock master bedroom" || input == "unlock masterbed room" || input =="unlock masterbed room door")
+		else if(input =="unlock master bedroom with masterbedroom key" || input == "unlock masterbed room with master bedroom key" || input =="unlock masterbed room door with masterbed room key"){
 			if(currentroom != "upstairs"){
 				$('<p>You can\'t do that.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
@@ -567,20 +526,18 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 				}
 				else $('<p>You do\'nt have a door key.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
-			
-		}
 		//unlock attic
 		else if(input =="unlock attic" || input =="open attic" ||input =="open attic door" ||input =="unlock attic door"){
 			if(currentroom == "upstairs"){
-				currentroom = 'attic';
 				$('<p>You are now in the attic.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			if	(currentroom != 'upstairs'){
 				$('<p>You can\'t do that!</p>').insertBefore("#placeholder").fadeIn(1000);
+				}	
 			}
-			else $('<p>I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
-			
+		else if (input == "unlock frontdoor with frontdoor key" || input == "unlock front door with front door key" || input == "unlock frondoor with front door key"){
+			if(currentroom == "westhall" && frontdoorKey == true){
+				("#wingame").clone().insertBefore("#placeholder").fadeIn(1000);
 		}
 		//
 		//end unlock
@@ -592,120 +549,144 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 			if(input == 'go'){
 				$('<p>Go where? Be descriptive.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-		
-			/*
-			//go from closet to east hallway
-			else if (input == "go east" && currentroom == "closet") {
-				if (doorUnlocked == true) {
-					if (beentohallway == true) {
-						if (note == false) {
-							hallnote = " The note is still here. ";
-						}
-						else {
-							hallnote = "";
-						}
-						if (phone == false) {
-							hallphone = " The bright screen of the phone lights up the hallway. ";
-						}
-						else {
-							hallphone = "";
-						}
-						$('<p>You are back in the hallway. The hallway continues to the north and west. The office is to the north. ' + hallnote + hallphone + '</p>').insertBefore("#placeholder").fadeIn(1000);
-						currentroom = "hallway";
-					}
-					else {
-						$("#area_hallway").clone().insertBefore("#placeholder").fadeIn(1000);
-						currentroom = "hallway";
-						beentohallway = true;
-					}
-				}
-				else {
-					$('<p>The door is locked.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-			}		
-			//
-			
-			
-			//go to torture room from hallway
-			else if (input == "go east" && currentroom == "hallway") {
-				if (torch == true) {
-					if (beentorture == true) {
-						if (searchtable == false) {
-							torturetable = "The table seems to emit a strange energy. ";
-						}
-						else {
-							torturetable = "";
-						}
-						if (whip == false) {
-							torturewhip = "The whip remains stationed on the wall. ";
-						}
-						else {
-							torturewhip = "";
-						}
-						$('<p>You are back in the room of strange devices. To the south is a doorway, and to the west is the hallway you came from. ' + torturetable + torturewhip + '</p>').insertBefore("#placeholder").fadeIn(1000);
-						currentroom = "torture";
-					}
-					else {
-						$("#area_torture").clone().insertBefore("#placeholder").fadeIn(1000);
-						beentorture = true;
-						currentroom = "torture";
-					}
-				}
-				else {
-					$('<p>It seems awful dark that way...</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
-			}
-			//
-			
-			//go to westhall from hallway
-			else if (input == "go west" && currentroom == "hallway") {
-				if (torch == true) {
-					if (beentowesthall == true) {
-						$('<p>You are back at the west hallway. To the east is where you came from. To the north and south are dark rooms.</p>').insertBefore("#placeholder").fadeIn(1000);
+			//Go from the closet to the east hall
+			else if (input == "go west" && currentroom == "closet") {
+				if (beentoWesthall == true) {
+						$('<p>You are in the west hallway, there is a bloody door to the west leading to the kitchen, while to the east of you there is a locked door leading to the cold outside.</p>').insertBefore("#placeholder").fadeIn(1000);
 						currentroom = "westhall";
 					}
 					else {
 						$("#area_westhall").clone().insertBefore("#placeholder").fadeIn(1000);
-						beentowesthall = true;
-						currentroom = "westhall";
+						currentroom = "hallway";
+						beentoWesthall = true;
+					}
+				else {
+					$('<p>You can\'t go east here.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+			}				
+			//go west to from the westhall to kitchen
+			else if (input == "go west" && currentroom == "westhall") {
+				if (beentoWesthall == true) {
+						if (cookiepan == false) {
+							cookiepan = "The stove is emitting strange heat.";
+						}
+						else {
+							cookiepan = "";
+						}
+						if (knife == false) {
+							knife = "A knife lays embedded in the wall.";
+						}
+						else {
+							knife = "";
+						}
+						if(note_two == false) {
+							note_two = "A strange note lies on the ground..";
+						}
+						else{
+							note_two = "";
+						}
+						$('<p>You are back in the kitchen, the floor seems covered in blood.'+ cookiepan + knife + + note_two +'</p>').insertBefore("#placeholder").fadeIn(1000);
+						currentroom = "kitchen";
+					else {
+						$("#area_kitchen").clone().insertBefore("#placeholder").fadeIn(1000);
+						beentoKitchen = true;
+						currentroom = "kitchen";
 					}
 				}
 				else {
-					$('<p>It seems awful dark that way...</p>').insertBefore("#placeholder").fadeIn(1000);
+					$('<p>incandescent lighting brightens up the destroyed kitchen..</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
 			//
-			
-			//go to exit from westhallway
+			else if(input == "go east" && currentroom == "kitchen"){
+				if(cookiepan == true && knife == true && note_two == true){
+					$('<p>You are back in the westhall. To your west is the kitchen and to your east is the cold outside.</p>').insertBefore("placeholder").fadeIn(1000);
+					}
+					currentroom = "westhall";
+					//Could add a check in here if they don't pick up all the idems but its their fault.
+					}
+			//go to outside from westhall
+			else if (input == "go east" && currentroom == "westhall" && outdoor_key == true) {
+					if (beentoWesthall == true && outdoor_key == true) {
+						$('<p>You are outside. The ominous wind hails from the north.Shivering your bones..</p>').insertBefore("#placeholder").fadeIn(1000);
+					}
+					else {
+						$('<p>the door is locked.</p>').insertBefore("#placeholder").fadeIn(1000);
+						//$("#area_outside").clone().insertBefore("#placeholder").fadeIn(1000);
+						//beentoOutside = true;
+						//currentroom = "outside";
+					}
+				else {
+					$('<p>Your at a crossways of the kitchen and outside.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+						currentroom = "outside";
+						beentoOutside = true;
+						$("area_outside").clone().insertBefore("#placeholder").fadeIn(1000);
+			}
+			else if(input == "go east" && currentroom == "westhall"){
+				if(beentoWesthall == true){
+				$('<p>Your back where you started. To the west is the westhall and to the north is the north hall.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else{
+				$('<p>You are in the westhall.</p>').insertBefore("#placeholder").fadeIn(1000);
+			    }
+			}	
+			//go to the northall from the westhall
 			else if (input == "go north" && currentroom == "westhall") {
-				if (beentoexit == true) {
-					$('<p>You are back at the room with the strange door. To the south is the hallway you came from.</p>').insertBefore("#placeholder").fadeIn(1000);
-					currentroom = "exit";
+				if (beentoWesthall == true || beentoWesthall == false) { //added if they went north first then its fine.
+					$('<p>You are now in the north hall. To your east is a cluddered office. To your west is a stair case leading upstairs.</p>').insertBefore("#placeholder").fadeIn(1000);
+					currentroom = "northhall";
 				}
 				else {
-					$("#area_exit").clone().insertBefore("#placeholder").fadeIn(1000);
-					beentoexit = true;
-					currentroom = "exit";
+					$("#area_northhall").clone().insertBefore("#placeholder").fadeIn(1000);
+					beentoNorthhall = true;
+					currentroom = "northhall";
 				}
 			}
 			//
-			
-			//go to westhallway from exit
-			else if (input == "go south" && currentroom == "exit") {
-				if (beentowesthall == true) {
-					$('<p>You are back at the west hallway. To the north and south are dark rooms. The hallway continues east.</p>').insertBefore("#placeholder").fadeIn(1000);
-					currentroom = "westhall";
+			//go to office from north hall
+			else if (input == "go east" && currentroom == "northhall") {
+			if (beentoNorthhall == true) {
+				if(bullets == false){
+					bullets = 'Some bullets lay on the desk of the office.';
+				}
+				else{	
+					bullets = "";
+				}
+				if(outdoor_key == false){
+					outdoor_key = "A key with strange markings reading \"Outdoor key\" is on the wooden chair.";
 				}
 				else {
-					$("#area_westhall").clone().insertBefore("#placeholder").fadeIn(1000);
-					beentowesthall = true;
-					currentroom = "westhall";
+					outdoor_key = "";
+				}
+				if(note_three == false){
+					note_three = 'There lies a torn up note, the heading reads\'Note three\', seems important.'
+				}
+				else{	
+					note_three = "";
+				}
+				if(skill_one == false){
+					skill_one = "A pill bottle labeled skill one is on the top of the filing cabinet."
+				}
+				else{	
+					skill_one = "";
+				}
+				$('<p>You are in the office, it seems cluddered. Papers everywhere, blood on the typewriters keys and a faint scent you can\'t describe.'+ bullets + outdoor_key + note_three + skill_one +'</p>').insertBefore("#placeholder").fadeIn(1000);
+					$("#area_office").clone().insertBefore("#placeholder").fadeIn(1000);
+					beentoOffice = true;
+					currentroom = "office";
 				}
 			}
-			//
-			
+			//go north to the upstairs from the office
+			else if(input == "go north" && currenroom == "office"){
+				if(beentoOffice == true){
+					$('<p>You are back in the north hall. To your west is the east hall. To your north is the staircase.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				$("#area_northhall").clone().insertBefore("#placeholder").fadeIn(1000);
+				currentroom = "northhall";
+			}
 			//go through exit
-			else if (input == "go north" && currentroom == "exit") {
+			/*else if (input == "go north" && currentroom == "exit") {
 				if (exitunlocked == true) {
 					$("#container").fadeOut(3000, function() {
 						$("#wingame").fadeIn(3000);
@@ -715,116 +696,119 @@ $('<p>You picked up a note. It reads:Welcome to my glorious mansion, It seems yo
 					$('<p>The door is locked.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
-			//
-			
-			
-			//go back to hallway from west hall
-			else if (input == "go east" && currentroom == "westhall") {
-				if (note == false) {
-					hallnote = " The note is still here. ";
-				}
-				else {
-					hallnote = "";
-				}
-				if (torch == false) {
-					halltorch = " The torch continues to light the dim hallway. ";
-				}
-				else {
-					halltorch = "";
-				}
-				$('<p>You are back in the main hallway. The hallway continues to the east and west. The jail room is to the south.' + hallnote + halltorch + '</p>').insertBefore("#placeholder").fadeIn(1000);
-				currentroom = "hallway";
-			}
-			//
-			
-			//go to bonus room from westhall
-			else if (input == "go south" && currentroom == "westhall") {
-				if (beentobonus == true) {
-					if (powder == false) {
-						bonuscrate = "The lone crate in the corner looks untouched.";
-					}
-					else {
-						bonuscrate = "";
-					}
-					$('<p>You are back in the small storage room. You came from the north. ' + bonuscrate + '</p>').insertBefore("#placeholder").fadeIn(1000);
-					currentroom = "bonus";
-				}
-				else {
-					$("#area_bonus").clone().insertBefore("#placeholder").fadeIn(1000);
-					beentobonus = true;
-					currentroom = "bonus";
-				}
-			}
-			//
-			
-			//go to westhall from bonus room
-			else if (input == "go north" && currentroom == "bonus") {
-					$('<p>You are back in the hallway. To the north and south are dark rooms. The hallway continues east.</p>').insertBefore("#placeholder").fadeIn(1000);
-					currentroom = "westhall";
-			}
-			//
-			
-			//go back to hallway from torture room
-			else if (input == "go west" && currentroom == "torture") {
-				if (note == false) {
-					hallnote = " The note is still here. ";
-				}
-				else {
-					hallnote = "";
-				}
-				if (torch == false) {
-					halltorch = " The torch continues to light the dim hallway. ";
-				}
-				else {
-					halltorch = "";
-				}
-				$('<p>You are back in the main hallway. The hallway continues to the east and west. The jail room is to the south.' + hallnote + halltorch + '</p>').insertBefore("#placeholder").fadeIn(1000);
-				currentroom = "hallway";
-			}
-			//
-			
-			
-			//go to morgue from torture room
-			else if (input == "go south" && currentroom == "torture") {
-				if (beenmorgue == true) {
-					if (zombiedead == false) {
-						morguezombie = "The zombie is still here!";
-					}
-					else {
-						morguezombie = "The zombie remains on the floor rotting in a cesspool of it's juices.";
-					}
-					$('<p>You are back in the morgue. To the north is the doorway to the room of strange devices. ' + morguezombie + '</p>').insertBefore("#placeholder").fadeIn(1000);
-					currentroom = "morgue";
-				}
-				else {
-					$("#area_morgue").clone().insertBefore("#placeholder").fadeIn(1000);
-					beenmorgue = true;
-					currentroom = "morgue";
-				}
-			}
-			//
-			
-			//go to torture room from morgue
-			else if (input == "go north" && currentroom == "morgue") {
-				if (searchtable == false) {
-					torturetable = "The table seems to emit a strange energy. ";
-				}
-				else {
-					torturetable = "";
-				}
-				if (whip == false) {
-					torturewhip = "The whip remains stationed on the wall. ";
-				}
-				else {
-					torturewhip = "";
-				}
-				$('<p>You are back in the room of strange devices. To the south is a doorway, and to the west is the hallway. ' + torturetable + torturewhip + '</p>').insertBefore("#placeholder").fadeIn(1000);
-				currentroom = "torture";
-			}
-			//
-			
-			
 			*/
+			//
+			//go north to the upstairs
+			else if (input == "go north" && currentroom == "westhall") {
+				if(beentoOffice == true){
+				$('<p>You are now upstairs. To your west is the guestroom, to the east is the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
+				currentroom = "upstairs";
+					}
+				$("area_upstairs").clone().insertBefore("#placeholder").fadeIn(1000);
+				currentroom = "upstairs";
+				}
+			/*********************************
+			Finally this is the upstairs part.
+			**********************************/
+			//go west to the guestroom
+			else if (input == "go west" && currentroom == "upstairs") {
+			if (beentoOffice == true) {
+				if(masterbedroom_key == true){
+					masterbedroom_key = "A large circualar key with imprints on it. It reads:'Master bedroom key'";
+				}
+				else{	
+					masterbedroom_key = "";
+				}
+				if (skill_two == true){
+					skill_two = "A strange glow emmits from a glass jar. A label is written on it, reading: 'Skill two' drink with caution.";
+				}
+				else{	
+					skill_two = "";
+				}
+				else {
+					$("#area_guestroom").clone().insertBefore("#placeholder").fadeIn(1000);
+					beentoGuestroom = true;
+					currentroom = "guestroom";
+					}
+				}
+			}
+			//Go back out to the upstairs "hallway"
+			else if(input == "go east" && currentroom == "guestroom"){
+				if(beentoUpstairs == true){
+					$('<p>You are back out in the upstairs. To your west is the guestroom and to your east is the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+			}
+			//go to east to the masterbedroom
+			else if (input == "go east" && currentroom == "upstairs") {
+				if (masterbedroom_key == true && beentoGuestroom == true){
+					if (gun == true){
+							gun = "A loaded gun, seems to be a 44. pistol. Made in the 1800's.";
+					}
+					else{	
+							gun = "";
+					}
+					if (skill_three == true){
+							skill_three = "A pill bottle, half empty. The name of it is 'Skill three', seems generic.";
+					}
+					else{
+							skill_three = "";
+					}
+					if (cash == true){
+							cash = "2 rolls of twenty dollars bills lie on the bed.";
+					}
+					else{	
+							cash = "";
+					}
+					if(frontdoorKey == true){
+						frontdoorKey = "The key to get out of this house! Go downstairs to the westhall to leave. The key has some imprints on it. It reads:'Well, you found the key. Good job. You have made it out of the house alive.";
+					}
+					else{
+						frontdoorKey = "";
+					}
+					$('<p>You are in the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
+					beentoMasterbedroom = true;
+					currentroom = "masterbedroom";
+					}
+				}
+			else if(input == "go west" && currentroom == "masterbedroom"){
+				if (gun == false){
+						gun = "The gun is still there.";
+					}
+				else{	
+						gun = "";
+					}
+				if (skill_three == false){
+						skill_three = "Skill three still lies there.";
+					}
+				else{
+						skill_three = "";
+					}
+				if (cash == false){
+						cash = "The roll of cash still lies there.";
+					}
+				else{
+						cash = "";
+					}
+				if (frontdoorKey == false){
+						frontdoorKey = "The frontdoor key is still there.";
+					}
+				else{
+						frontdoorKey = "";
+					}
+				}
+			//go back to the upstairs from the master bedroom
+			else if (input == "go west" && currentroom == "masterbedroom"){
+				if (beentoMasterbedroom == true){
+					$('<p>You are now back in the upstairs. To your west is the guestroom, to your east is the master bedroom. To your north is the stairs to the westhall.The door is still locked, maybe you have a key?</p>').insertBefore("#placeholder").fadeIn(1000);
+					}
+					currentroom = "upstairs";
+				}
+			else if (input == "go north" && currentroom == "upstairs") {
+				if(masterbedroom_key == true){
+					$('<p>You are now downstairs on the north hall. The front door creaks.That is the only way out.</p>').insertBefore("#placeholder").fadeIn(1000);
+						}
+				currentroom = "northhall";
+					}
 			else $('<p>You can\'t go that way.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
 		//}
