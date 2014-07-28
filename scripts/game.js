@@ -3,8 +3,8 @@
 * this script is the main component of Project Source
 * The script is editable on github. github.com/rivalnick/project-source
 * Please do send me a pull request if you do tend to alter it in any way to make the game better.
-*/
-/*************************************************************
+*
+*************************************************************
 Set up, user starts by leaving the starting point then is faced with a choice of either going west or north.
 *******************
 Going east
@@ -82,14 +82,13 @@ Who has been killed
 *******************/
 haskilledHobo = false;
 haskilledWolf = false;
-//End
 $(document).ready(function() {
 	$("#compass").fadeIn(2000);
 	$("#message_begin").fadeIn(3000);
 	$("#area_main").fadeIn(3000);
 	$("#command_line").fadeIn(2000);
 	$("form").submit(function() {
-		var input = $("#command_line").val();
+	var input = $("#command_line").val();
 		//help
 		//
 		if (input.indexOf("help") > -1) {
@@ -99,6 +98,9 @@ $(document).ready(function() {
 		}
 		//end help
 		//
+		if(input == "where am i?"){
+			$("<p>'" + currentroom + "'</p>").insertBefore("#placeholder").fadeIn(1000);
+			}
 		//take
 		//
 		
@@ -244,12 +246,11 @@ $(document).ready(function() {
 
 		//search
 		else if (input.indexOf("search") > -1) {
-			
 			if (input == "search") {
 				$('<p>Search what? Be specific. Type "help" for a list of all commands.</p>').insertBefore("#placeholder").fadeIn(1000);
 					}
-			}	//closet the beginning of the game.
-			else if(input == 'search closet' || input == 'search Closet'|| input == 'Search closet' || input == 'Search Closet'){
+				//closet the beginning of the game.
+			else if (input == 'search closet' || input == 'search Closet'|| input == 'Search closet' || input == 'Search Closet'){
 				if(currentroom == 'closet' && phone == false && note == false){
 					//phone = true;
 					//note = true;
@@ -309,6 +310,7 @@ $(document).ready(function() {
 				}
 				else $('<p>There is nothing to search for.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
+		}
 			//
 			/*
 		//hobo
@@ -492,9 +494,7 @@ $(document).ready(function() {
 				}
 			}
 		}
-		//
 		//end inventory
-		
 		//unlock
 		else if (input.indexOf("unlock") > -1) {
 			if (input == "unlock" || input == "unlock door" || input == "unlock outside door" || input == "unlock outside") {
@@ -536,6 +536,8 @@ $(document).ready(function() {
 		else if (input == "unlock frontdoor with frontdoor key" || input == "unlock front door with front door key" || input == "unlock frondoor with front door key"){
 			if(currentroom == "westhall" && frontdoorKey == true){
 				("#wingame").clone().insertBefore("#placeholder").fadeIn(1000);
+					}
+			}
 		}
 		//
 		//end unlock
@@ -579,19 +581,17 @@ $(document).ready(function() {
 						}
 						$('<p>You are back in the kitchen, the floor seems covered in blood.'+ cookiepan + knife + + note_two +'</p>').insertBefore("#placeholder").fadeIn(1000);
 						currentroom = "kitchen";
+					}
 					else {
 						$("#area_kitchen").clone().insertBefore("#placeholder").fadeIn(1000);
 						beentoKitchen = true;
 						currentroom = "kitchen";
-					}
-				}
-				else {
 					$('<p>incandescent lighting brightens up the destroyed kitchen..</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
 			//
 			else if(input == "go east" && currentroom == "kitchen"){
-				if(cookiepan == true && knife == true && note_two == true){
+				if (cookiepan == true && knife == true && note_two == true){
 					$('<p>You are back in the westhall. To your west is the kitchen and to your east is the cold outside.</p>').insertBefore("placeholder").fadeIn(1000);
 						}
 					currentroom = "westhall";
@@ -601,15 +601,15 @@ $(document).ready(function() {
 			else if (input == "go east" && currentroom == "westhall" && outdoor_key == true) {
 					if (beentoWesthall == true && outdoor_key == true) {
 						$('<p>You are outside. The ominous wind hails from the north.Shivering your bones..</p>').insertBefore("#placeholder").fadeIn(1000);
-					}
-					else {
+					if (beentoWesthall == true && outdoor_key == false) {
 						$('<p>the door is locked.</p>').insertBefore("#placeholder").fadeIn(1000);
 						//$("#area_outside").clone().insertBefore("#placeholder").fadeIn(1000);
 						//beentoOutside = true;
 						//currentroom = "outside";
-					}
+						}
 				else {
 					$('<p>Your at a crossways of the kitchen and outside.</p>').insertBefore("#placeholder").fadeIn(1000);
+					}
 				}
 						currentroom = "outside";
 						beentoOutside = true;
@@ -670,7 +670,7 @@ $(document).ready(function() {
 				}
 			}
 			//go north to the upstairs from the office
-			else if(input == "go north" && currenroom == "office"){
+			else if(input == "go north" && currentroom == "office"){
 				if(beentoOffice == true){
 					$('<p>You are back in the north hall. To your west is the east hall. To your north is the staircase.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
@@ -714,11 +714,11 @@ $(document).ready(function() {
 				else{	
 					skill_two = "";
 				}
+			}
 				else {
 					$("#area_guestroom").clone().insertBefore("#placeholder").fadeIn(1000);
 					beentoGuestroom = true;
 					currentroom = "guestroom";
-					}
 				}
 			}
 			//Go back out to the upstairs "hallway"
@@ -800,9 +800,7 @@ $(document).ready(function() {
 					}
 			else $('<p>You can\'t go that way.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-		//}
-		//
-		//end go
+			
 			else $('I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
 		$("#console").scrollTop($("#console")[0].scrollHeight);
 		$("#command_line").val("");
