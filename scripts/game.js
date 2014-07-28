@@ -555,9 +555,6 @@ $(document).ready(function() {
 						currentroom = "hallway";
 						beentoWesthall = true;
 					}
-				else {
-					$('<p>You can\'t go east here.</p>').insertBefore("#placeholder").fadeIn(1000);
-				}
 			}				
 			//go west to from the westhall to kitchen
 			else if (input == "go west" && currentroom == "westhall") {
@@ -596,7 +593,7 @@ $(document).ready(function() {
 			else if(input == "go east" && currentroom == "kitchen"){
 				if(cookiepan == true && knife == true && note_two == true){
 					$('<p>You are back in the westhall. To your west is the kitchen and to your east is the cold outside.</p>').insertBefore("placeholder").fadeIn(1000);
-					}
+						}
 					currentroom = "westhall";
 					//Could add a check in here if they don't pick up all the idems but its their fault.
 					}
