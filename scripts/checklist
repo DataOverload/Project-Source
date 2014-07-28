@@ -1,0 +1,11 @@
+CheckList:
+
+1. I need to figure out how to make a interactive map, I can make some mock-ups to show you later ashie if you can't visualized what I'm talking about. 
+
+2. Need to escape() the input.(basically sanitize it so people can't execute their own code inside my document)
+
+3.Need to work out an official name for the game.
+
+4. Work out a system for beta testing. Something like Access codes where only certain people can access the page.
+
+5. Lastly if we can do this, make a username & password system where people can share the game out.
