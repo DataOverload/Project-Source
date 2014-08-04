@@ -87,6 +87,7 @@ $(document).ready(function() {
 	$("#message_begin").fadeIn(3000);
 	$("#area_main").fadeIn(3000);
 	$("#command_line").fadeIn(2000);
+	$("#title").fadeIn(2000).fadeOut(8000);
 	$("form").submit(function() {
 	var input = $("#command_line").val();
 		//help
@@ -98,7 +99,9 @@ $(document).ready(function() {
 		}
 		//end help
 		//
-		if(input == "where am i?"){
+		
+		//Testing since a bug came up for location
+		if(input == "wai"){
 			$("<p>'" + currentroom + "'</p>").insertBefore("#placeholder").fadeIn(1000);
 			}
 		//take
@@ -479,18 +482,20 @@ $(document).ready(function() {
 				else {
 					skf = "";
 				}
+				/*
 				if (frontdoorKey = true){
 					fdk = "Frontdoor key<br />";
 				}
 				else {
 					fdk = "";
 				}
+				*/
 				//
-				if (p == "" && n == "" && cp == ""&& kf == "" && ntw == "" && b =="" && ok =="" && ntt =="" && sko == "" && mbk == "" && skt == "" && g == "" && sktr == "" && c =="" && skf == ""&& fdk == "") {	//Add to this inventory and make it bigger.
+				if (p == "" && n == "" && cp == ""&& kf == "" && ntw == "" && b =="" && ok =="" && ntt =="" && sko == "" && mbk == "" && skt == "" && g == "" && sktr == "" && c =="" && skf == ""/*&& fdk == ""*/) {	//Add to this inventory and make it bigger.
 					$('<p>Inventory:<br /><i>There is nothing in your inventory</i></p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else {
-					 $('<p>Inventory:<br />' + p + n + cp + kf + ntw + b + ok + ntt + sko + mbk + skt + g + sktr + c + skf + fdk +'</p>').insertBefore("#placeholder").fadeIn(1000);
+					 $('<p>Inventory:<br />' + p + n + cp + kf + ntw + b + ok + ntt + sko + mbk + skt + g + sktr + c + skf /*+ fdk */+'</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
 		}
@@ -548,18 +553,26 @@ $(document).ready(function() {
 			}
 			//Go from the closet to the east hall
 			else if (input == "go west" && currentroom == "closet") {
-				if (beentoWesthall == true) {
-						$('<p>You are in the west hallway, there is a bloody door to the west leading to the kitchen, while to the east of you there is a locked door leading to the cold outside.</p>').insertBefore("#placeholder").fadeIn(1000);
+				if (beentoWesthall == false && currentroom == "closet") {
+						$('<p>You are in the west hallway, there is a bloody door to the east leading to the kitchen, while to the west of you there is a locked door leading to the cold outside.</p>').insertBefore("#placeholder").fadeIn(1000);
 						currentroom = "westhall";
 					}
 					else {
 						$("#area_westhall").clone().insertBefore("#placeholder").fadeIn(1000);
-						currentroom = "hallway";
+						currentroom = "westhall";
 						beentoWesthall = true;
 					}
-			}				
-			//go west to from the westhall to kitchen
-			else if (input == "go west" && currentroom == "westhall") {
+			}
+			//go north from the closet into the north hall
+			else if(input == "go north" && currentroom == "closet") {
+					if (beentoWesthall == true || beentoWesthall == false){
+							$('<p>You are now in the north hall. To your east is the office. To your west is the stairs to the upstairs.</p>').insertBefore("#placeholder").fadeIn(1000);
+						}
+						$("#area_northall").clone().insertBefore("#placeholder").fadeIn(1000);
+						currentroom = "northhall";
+				}
+			//go west to from  westhall to kitchen
+			else if (input == "go east" && currentroom == "westhall") {
 				if (beentoWesthall == true) {
 						if (cookiepan == false) {
 							cookiepan = "The stove is emitting strange heat.";
@@ -590,18 +603,38 @@ $(document).ready(function() {
 				}
 			}
 			//
-			else if(input == "go east" && currentroom == "kitchen"){
+			else if(input == "go west" && currentroom == "kitchen"){
 				if (cookiepan == true && knife == true && note_two == true){
 					$('<p>You are back in the westhall. To your west is the kitchen and to your east is the cold outside.</p>').insertBefore("placeholder").fadeIn(1000);
 						}
+					beentoKitchen = true;
 					currentroom = "westhall";
-					//Could add a check in here if they don't pick up all the idems but its their fault.
 					}
+			else if (input == "go west" && currentroom == "kitchen"){
+				if(cookiepan == false){
+						cookiepan = "A cookiepan lies on the kitchen table.";
+					}
+				else{
+						cookiepan = "";
+					}
+				if(knife == false){
+						knife = "a bloody knife lies indented in the wall.";
+					}
+				else{		
+						knife = "";
+					}
+				if(note_two == false){
+						note_two = "A second note lies on the ground, ripped.";
+					}
+				else{
+						note_two = "";
+					}
+				}
 			//go to outside from westhall
-			else if (input == "go east" && currentroom == "westhall" && outdoor_key == true) {
+			else if (input == "go west" && currentroom == "westhall" && outdoor_key == true) {
 					if (beentoWesthall == true && outdoor_key == true) {
 						$('<p>You are outside. The ominous wind hails from the north.Shivering your bones..</p>').insertBefore("#placeholder").fadeIn(1000);
-					if (beentoWesthall == true && outdoor_key == false) {
+					if (outdoor_key == false && currentroom == "westhall") {
 						$('<p>the door is locked.</p>').insertBefore("#placeholder").fadeIn(1000);
 						//$("#area_outside").clone().insertBefore("#placeholder").fadeIn(1000);
 						//beentoOutside = true;
@@ -615,30 +648,41 @@ $(document).ready(function() {
 						beentoOutside = true;
 						$("area_outside").clone().insertBefore("#placeholder").fadeIn(1000);
 			}
+			/*
 			else if(input == "go east" && currentroom == "westhall"){
 				if(beentoWesthall == true){
 				$('<p>Your back where you started. To the west is the westhall and to the north is the north hall.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 				else{
-				$('<p>You are in the westhall.</p>').insertBefore("#placeholder").fadeIn(1000);
+				$('<p>You are in the westhall.To your east is the kitchen.To your west is a locked door going to the outside.</p>').insertBefore("#placeholder").fadeIn(1000);
 			    }
-			}	
-			//go to the northall from the westhall
-			else if (input == "go north" && currentroom == "westhall") {
+			}	*/
+			//go to closet "area" then go to north hall.
+			else if (input == "go south" && currentroom == "westhall") {
 				if (beentoWesthall == true || beentoWesthall == false) { //added if they went north first then its fine.
-					$('<p>You are now in the north hall. To your east is a cluddered office. To your west is a stair case leading upstairs.</p>').insertBefore("#placeholder").fadeIn(1000);
+					$('<p>You are back in the closet, to your north is the north hall and to your west is the west hall which you just came from.</p>').insertBefore("#placeholder").fadeIn(1000);
+					//$('<p>You are now in the north hall. To your east is a cluddered office. To your west is a stair case leading upstairs.</p>').insertBefore("#placeholder").fadeIn(1000);
 					currentroom = "northhall";
 				}
 				else {
 					$("#area_northhall").clone().insertBefore("#placeholder").fadeIn(1000);
-					beentoNorthhall = true;
-					currentroom = "northhall";
+					currentroom = "closet";
 				}
 			}
+			else if(input == "go north" && currentroom == "closet"){
+				if(this.currentroom == "closet"){
+					$('<p>You are now in the north hall. To your east is a cluddered office. To your west is a stair case leading upstairs.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				else{
+					$("#area_northall").clone().insertBefore("#placeholder").fadeIn(1000);
+						beentoNorthhall = true;
+						currentroom = "northhall";
+					} 
+			}	
 			//
 			//go to office from north hall
 			else if (input == "go east" && currentroom == "northhall") {
-			if (beentoNorthhall == true) {
+			if (beentoOffice == true && currentroom == "northhall") {
 				if(bullets == false){
 					bullets = 'Some bullets lay on the desk of the office.';
 				}
@@ -669,8 +713,16 @@ $(document).ready(function() {
 					currentroom = "office";
 				}
 			}
+			//go south the go back to the cross-roads of the northhall and west hall
+			else if(input == "go south" && currentroom == "northhall"){
+				if(beentoNorthhall == true) {
+					$('<p>You are now back at the crossway of going north to the north hall and to your west is the west hall.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+				("#area_closet").clone().insertBefore("#placeholder").fadeIn(1000);
+			currentroom = "closet"; //they go back to the starting point basically.
+			}
 			//go north to the upstairs from the office
-			else if(input == "go north" && currentroom == "office"){
+			else if(input == "go west" && currentroom == "office"){
 				if(beentoOffice == true){
 					$('<p>You are back in the north hall. To your west is the east hall. To your north is the staircase.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
@@ -689,60 +741,66 @@ $(document).ready(function() {
 				}
 			}
 			*/
-			//
 			//go north to the upstairs
-			else if (input == "go north" && currentroom == "westhall") {
-				if(beentoOffice == true){
+			else if (input == "go north" && currentroom == "northhall") {
+				if (beentoOffice == true){
 				$('<p>You are now upstairs. To your west is the guestroom, to the east is the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
-				currentroom = "upstairs";
 					}
 				$("area_upstairs").clone().insertBefore("#placeholder").fadeIn(1000);
 				currentroom = "upstairs";
 				}
+			else if(input == "go west" && currentroom == "northhall" && beentoOffice == false){
+					if(beentoOffice == false){
+						$('<p>You are now upstairs. To your west is the guestroom and to your east is the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
+					}
+				}
 			//go west to the guestroom
 			else if (input == "go west" && currentroom == "upstairs") {
+				if(beentoOffice == true){
+					$('<p>You are in the guest room. The light flickers on and off.There are noises coming from the outside. You say to yourself.\"Just ignore those sounds."</p>').insertBefore("#placeholder").fadeIn(1000);
+					//$('<p>You are back to the upstairs. To your west is the guestroom and to your east is the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
+				}
+					("#area_upstairs").clone().insertBefore("#placeholder").fadeIn(1000);
+					currentroom = "guestroom";
+			}
+			else if(input == "go east" && currentroom == "guestroom"){
 			if (beentoOffice == true) {
-				if(masterbedroom_key == true){
+				if(masterbedroom_key == false){
 					masterbedroom_key = "A large circualar key with imprints on it. It reads:'Master bedroom key'";
 				}
 				else{	
 					masterbedroom_key = "";
 				}
-				if (skill_two == true){
+				if (skill_two == false){
 					skill_two = "A strange glow emmits from a glass jar. A label is written on it, reading: 'Skill two' drink with caution.";
 				}
 				else{	
 					skill_two = "";
-				}
-			}
-				else {
-					$("#area_guestroom").clone().insertBefore("#placeholder").fadeIn(1000);
-					beentoGuestroom = true;
-					currentroom = "guestroom";
+					}
 				}
 			}
 			//Go back out to the upstairs "hallway"
-			else if(input == "go east" && currentroom == "guestroom"){
-				if(beentoUpstairs == true){
+			else if (input == "go east" && currentroom == "guestroom"){
+				if(masterbedroom_key == true && skill_two == true){
 					$('<p>You are back out in the upstairs. To your west is the guestroom and to your east is the master bedroom.</p>').insertBefore("#placeholder").fadeIn(1000);
 				}
 			}
 			//go to east to the masterbedroom
 			else if (input == "go east" && currentroom == "upstairs") {
 				if (masterbedroom_key == true && beentoGuestroom == true){
-					if (gun == true){
+					if (gun == false){
 							gun = "A loaded gun, seems to be a 44. pistol. Made in the 1800's.";
 					}
 					else{	
 							gun = "";
 					}
-					if (skill_three == true){
+					if (skill_three == false){
 							skill_three = "A pill bottle, half empty. The name of it is 'Skill three', seems generic.";
 					}
 					else{
 							skill_three = "";
 					}
-					if (cash == true){
+					if (cash == false){
 							cash = "2 rolls of twenty dollars bills lie on the bed.";
 					}
 					else{	
@@ -759,7 +817,7 @@ $(document).ready(function() {
 					currentroom = "masterbedroom";
 					}
 				}
-			else if(input == "go west" && currentroom == "masterbedroom"){
+			else if (input == "go west" && currentroom == "masterbedroom"){
 				if (gun == false){
 						gun = "The gun is still there.";
 					}
@@ -787,20 +845,19 @@ $(document).ready(function() {
 				}
 			//go back to the upstairs from the master bedroom
 			else if (input == "go west" && currentroom == "masterbedroom"){
-				if (beentoMasterbedroom == true){
+				if (frontdoorKey == true && cash == true && skill_three == true){
 					$('<p>You are now back in the upstairs. To your west is the guestroom, to your east is the master bedroom. To your north is the stairs to the westhall.The door is still locked, maybe you have a key?</p>').insertBefore("#placeholder").fadeIn(1000);
 					}
 					currentroom = "upstairs";
 				}
-			else if (input == "go north" && currentroom == "upstairs") {
-				if(masterbedroom_key == true){
+			else if (input == "go south" && currentroom == "upstairs") {
+				if (beentoNorthhall == true || masterbedroom_key == true){
 					$('<p>You are now downstairs on the north hall. The front door creaks.That is the only way out.</p>').insertBefore("#placeholder").fadeIn(1000);
 						}
 				currentroom = "northhall";
 					}
 			else $('<p>You can\'t go that way.</p>').insertBefore("#placeholder").fadeIn(1000);
 			}
-			
 			else $('I don\'t understand "' + input + '"</p>').insertBefore("#placeholder").fadeIn(1000);
 		$("#console").scrollTop($("#console")[0].scrollHeight);
 		$("#command_line").val("");
